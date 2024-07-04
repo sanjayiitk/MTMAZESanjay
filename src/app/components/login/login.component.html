@@ -1,1 +1,38 @@
-<p>login works!</p>
+<div class="parent">
+
+  <div class="container-login">
+    <div class="signin-form">
+      <h2>Admin Login</h2>
+      <form [formGroup]="LoginForm">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" formControlName="username" id="username" name="username" placeholder="Enter Email Address">
+
+          <div class="text-danger">
+            @if (LoginForm.controls['username'].touched&&LoginForm.controls['username'].errors?.['required']) {
+            <span>this is required</span>
+            }
+            @else if (LoginForm.controls['username'].touched&&LoginForm.controls['username'].errors?.['email']) {
+            <span>enter proper email</span>
+
+            }
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="pwd" id="password" name="password" placeholder="Enter Password">
+          <div class="text-danger">
+            @if (LoginForm.controls['pwd'].touched&&LoginForm.controls['pwd'].errors?.['required']) {
+            <span>this is required</span>
+            }
+            @else if (LoginForm.controls['pwd'].touched&&LoginForm.controls['pwd'].errors?.['minLength']) {
+            <span>password should be 8 char</span>
+            }
+          </div>
+
+        </div>
+        <button type="button" (click)="onLogin()">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
